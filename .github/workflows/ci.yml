@@ -19,10 +19,10 @@ jobs:
           python-version: '3.11' 
  
       - name: Install dependencies 
-        run: pip install -r requirements.txt 
+        run: pip install -r inventory/requirements.txt
  
       - name: Django system check 
-        run: python manage.py check 
+        run: python inventory/manage.py check
  
       - name: Log in to GitHub Container Registry 
         uses: docker/login-action@v4 
@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }} 
  
       - name: Build Docker image 
-        run: docker build -t ghcr.io/sarmadosman/ai-agent-actions-430:latest . 
+        run: docker build -t ghcr.io/sarmadosman/ai-agent-actions-430:latest inventory
  
       - name: Push Docker image 
         run: docker push ghcr.io/sarmadosman/ai-agent-actions-430:latest
