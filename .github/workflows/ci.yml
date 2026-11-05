@@ -33,6 +33,10 @@ jobs:
  
       - name: Build Docker image 
         run: docker build -t ghcr.io/sarmadosman/ai-agent-actions-430:latest inventory
- 
+
       - name: Push Docker image 
         run: docker push ghcr.io/sarmadosman/ai-agent-actions-430:latest
+      - name: Django system check
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python inventory/manage.py check
